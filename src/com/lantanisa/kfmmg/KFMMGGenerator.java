@@ -26,6 +26,8 @@ import javax.print.AttributeException;
 
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
 
+import jdk.nashorn.internal.objects.NativeFloat32Array;
+
 public class KFMMGGenerator {
 	private int seed;
 	
@@ -80,7 +82,7 @@ public class KFMMGGenerator {
 		this.seed = seed;
 	}
 	
-	public BufferedImage generateMeme( String text, int fontSize, boolean whiteBg, boolean shuffle, boolean logoStyle) throws OutputImageTooLargeException{
+	public BufferedImage generateMeme( String text, int fontSize, boolean whiteBg, boolean shuffle, boolean logoStyle, Float fixedRatio) throws OutputImageTooLargeException{
 		if( text.length()>MAX_TEXT_LENGTH){
 			throw new OutputImageTooLargeException();
 		}
@@ -129,6 +131,21 @@ public class KFMMGGenerator {
 		}
 		height += LINE_SPACING*(images.size()-1); 
 		
+		float paddingY = 0;
+		
+		if( fixedRatio!=null && fixedRatio!=0){
+			float newWidth;
+			float newHeight;
+
+			newHeight = Math.max(height, width/fixedRatio);
+			newWidth = Math.max(width, newHeight*fixedRatio);
+			newHeight = Math.max(height, newWidth/fixedRatio);
+			
+			paddingY = (newHeight-height)/2;
+			width = (int)newWidth;
+			height = (int)newHeight;
+		}
+		
 		if( width*height>1024*1024 || text.length()>MAX_TEXT_LENGTH){
 			throw new OutputImageTooLargeException();
 		}
@@ -142,7 +159,7 @@ public class KFMMGGenerator {
 			g.fillRect(0, 0, width, height);
 		}
 		
-		int offsetY = 0;
+		int offsetY = (int)paddingY;
 		for (BufferedImage bufferedImage : images) {
 			int offsetX = (width-bufferedImage.getWidth())/2;
 			
@@ -347,7 +364,7 @@ public class KFMMGGenerator {
 	
 	public BufferedImage tooLargeImage(){
 		try {
-			return generateMeme("圖片大小上限是 1024x1024px\n文字內容不超出100字", 24, true, false, false);
+			return generateMeme("圖片大小上限是 1024x1024px\n文字內容不超出100字", 24, true, false, false, null);
 		} catch (OutputImageTooLargeException e) {
 			return null;
 		}

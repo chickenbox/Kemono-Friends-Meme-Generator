@@ -20,7 +20,8 @@ Those fonts has to be installed on server.
 ## Update History
 
 ```
-* 20170507 - version.1.0.0: Release.
+* 20170507 - version.1.16: Add lock image ratio.
+* 20170507 - version.1.15: Release.
 ```
 
 ## Any Problems?

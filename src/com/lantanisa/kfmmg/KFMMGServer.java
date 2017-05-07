@@ -46,15 +46,19 @@ public class KFMMGServer extends HttpServlet {
 		BufferedImage meme = null;
 		try{
 			boolean logoStyle = false;
+			Float fixedRatio = null;
 			try{
 				logoStyle = Boolean.parseBoolean(request.getParameter("logoStyle"));
+			}catch( Exception e){}
+			try{
+				fixedRatio = Float.parseFloat(request.getParameter("fixedRatio"));
 			}catch( Exception e){}
 			meme = new KFMMGGenerator(Integer.parseInt(request.getParameter("seed"))).generateMeme(
 				request.getParameter("text"),
 				Integer.parseInt(request.getParameter("fontSize")),
 				Boolean.parseBoolean(request.getParameter("whiteBg")),
 				Boolean.parseBoolean(request.getParameter("shuffle")),
-				logoStyle);
+				logoStyle, fixedRatio);
 		}catch(KFMMGGenerator.OutputImageTooLargeException e){
 			imageTooLarge = true;
 		}catch(Exception e){			

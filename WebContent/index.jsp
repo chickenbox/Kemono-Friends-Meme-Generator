@@ -1,6 +1,6 @@
 <%@ page pageEncoding="UTF-8"%>
 <%
-final String VERSION = "1.15";
+final String VERSION = "1.16";
 final String TITLE = "動物好友貼圖生成器";
 final String DESCRIPTION = "快樂地分享貼圖";
 %>
@@ -29,14 +29,15 @@ final String DESCRIPTION = "快樂地分享貼圖";
       type="image/png" 
       href="favicon.png">
 <script>
-function generateMeme( seed, text, fontSize, whiteBg, shuffle, logoStyle ){
+function generateMeme( seed, text, fontSize, whiteBg, shuffle, logoStyle, ratioLock ){
 	return "KFMMGServer?"+
 			"seed="+seed+
 			"&text="+encodeURIComponent(text.length==0?content_text.placeholder:text)+
 			"&fontSize="+fontSize+
 			"&whiteBg="+whiteBg+
 			"&shuffle="+shuffle+
-			"&logoStyle="+logoStyle;
+			"&logoStyle="+logoStyle+
+			(ratioLock?"&fixedRatio=1.91":"");
 }
 
 function onStart(){
@@ -60,7 +61,8 @@ function onStart(){
 			64,
 			false,
 			false,
-			true
+			true,
+			false
 			);
 	meme_seed.value = Math.floor(Math.random()*1000);
 	updateMeme();
@@ -73,12 +75,13 @@ function updateMeme(){
 			parseInt(font_size.value),
 			!meme_trans_bg.checked,
 			meme_shuffle.checked,
-			meme_logo_style.checked
+			meme_logo_style.checked,
+			meme_ratio_lock.checked
 			);	 
 }
  
  function updateShareUrl(){
-	 share_url.value = output_meme.src;
+	 share_url.value = output_meme.src;	 
  }
  
 function shareMemeFB(){
@@ -88,7 +91,8 @@ function shareMemeFB(){
 			parseInt(font_size.value),
 			!meme_trans_bg.checked,
 			meme_shuffle.checked,
-			meme_logo_style.checked
+			meme_logo_style.checked,
+			false
 			)+"&upScaleWidth=650&upScaleHeight=340");
 	window.open("https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(shareUrl), "pop", "width=600, height=400, scrollbars=no");
 }
@@ -100,7 +104,8 @@ function shareMemeTW(){
 			parseInt(font_size.value),
 			!meme_trans_bg.checked,
 			meme_shuffle.checked,
-			meme_logo_style.checked
+			meme_logo_style.checked,
+			false
 			)+"&upScaleWidth=600&upScaleHeight=321");
 	window.open("https://twitter.com/intent/tweet?url="+encodeURIComponent(shareUrl), "pop", "width=600, height=400, scrollbars=no");
 }
@@ -149,6 +154,7 @@ KEMONO FRIENDS"></textarea></div>
 <div style="display:table-row"><div style="display:table-cell" align="right"><b>Logo樣式:</b></div><div style="display:table-cell" align="left"><input id="meme_logo_style" type="checkbox" checked onchange="updateMeme()"/></div></div>
 <div style="display:table-row"><div style="display:table-cell" align="right"><b>透明背景:</b></div><div style="display:table-cell" align="left"><input id="meme_trans_bg" type="checkbox" checked onchange="updateMeme()"/></div></div>
 <div style="display:table-row"><div style="display:table-cell" align="right"><b>隨機顏色排序:</b></div><div style="display:table-cell" align="left"><input id="meme_shuffle" type="checkbox" onchange="updateMeme()"/></div></div>
+<div style="display:table-row"><div style="display:table-cell" align="right"><b>鎖定2:1圖像:</b></div><div style="display:table-cell" align="left"><input id="meme_ratio_lock" type="checkbox" checked onchange="updateMeme()"/></div></div>
 </div>
 <br><br>
 <b>完成圖像:</b><br>
