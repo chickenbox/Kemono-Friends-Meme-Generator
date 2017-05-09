@@ -1,7 +1,7 @@
 <%@page import="java.net.URLEncoder"%>
 <%@ page pageEncoding="UTF-8"%>
 <%
-final String VERSION = "1.17";
+final String VERSION = "1.18";
 final String TITLE = "動物好友貼圖生成器";
 final String DESCRIPTION = "快樂地分享貼圖";
 %>
@@ -16,12 +16,12 @@ final String DESCRIPTION = "快樂地分享貼圖";
 <%
 	String thumbnailUrl = request.getParameter("thumbnail");
 	if( thumbnailUrl==null ){
-		thumbnailUrl = request.getRequestURL()+"KFMMGServer?seed=301&text="+URLEncoder.encode(TITLE+"v"+VERSION,"UTF8")+"&fontSize=80&whiteBg=false&shuffle=false&logoStyle=true&fixedRatio=1.91";
+		thumbnailUrl = request.getRequestURL()+"KFMMGServer?seed=301&text="+URLEncoder.encode(TITLE+"\nv"+VERSION,"UTF8")+"&fontSize=80&whiteBg=false&shuffle=false&logoStyle=true&fixedRatio=1.91";
 	}
 %>
 <meta property="og:title" content="<%=TITLE%>">
 <meta property="og:description" content="<%=DESCRIPTION%>">
-<meta property="og:url" content="<%=request.getRequestURL()%>">
+<meta property="og:url" content="<%=request.getRequestURL()+"?"+request.getQueryString()%>">
 <meta property="og:image" content="<%=thumbnailUrl%>" />
 
 <meta name="twitter:card" content="summary_large_image">
@@ -176,7 +176,7 @@ KEMONO FRIENDS"></textarea></div>
 開發者資訊:<br>
 <a href="api-doc.jsp">REST API 文件</a><br></div>
 </div><br>
-<h7>最後更新 08-05-2017</h7>
+<h7>最後更新 09-05-2017</h7>
 </font>
 </center>
 </body>
