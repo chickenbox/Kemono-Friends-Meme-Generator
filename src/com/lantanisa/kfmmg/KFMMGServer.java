@@ -27,7 +27,8 @@ import com.mysql.jdbc.Buffer;
 public class KFMMGServer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private static final long startupTime = System.currentTimeMillis();
+	//private static final long startupTime = System.currentTimeMillis();
+	private static final long startupTime = 1000;	// good value to tell client always use cached image
        
     /**
      * @see HttpServlet#HttpServlet()

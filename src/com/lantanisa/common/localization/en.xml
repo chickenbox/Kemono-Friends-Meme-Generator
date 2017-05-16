@@ -1,0 +1,78 @@
+<strings>
+    <string>
+        <key>site_title</key>
+        <value>Kemono Friend Meme Generator</value>
+    </string>
+	<string>
+        <key>site_description</key>
+        <value>Share Meme Easily</value>
+    </string>
+    <string>
+        <key>copy_clipboard_prompt</key>
+        <value>Image url is copied to clipboard.</value>
+    </string>
+    <string>
+        <key>input_text_content</key>
+        <value>Input content(max 100 characters):</value>
+    </string>    
+    <string>
+        <key>font_size</key>
+        <value>Font Size:</value>
+    </string>
+    <string>
+        <key>rand_seed</key>
+        <value>Random Seed:</value>
+    </string>
+    <string>
+        <key>randomize</key>
+        <value>Randomize</value>
+    </string>
+    <string>
+        <key>logo_style</key>
+        <value>Logo Style:</value>
+    </string>
+    <string>
+        <key>transparent_background</key>
+        <value>Clear Background:</value>
+    </string>
+    <string>
+        <key>random_color_order</key>
+        <value>Random Color:</value>
+    </string>
+    <string>
+        <key>lock_aspect_ratio</key>
+        <value>Fixed 2:1 Aspect Ratio:</value>
+    </string>
+    <string>
+        <key>completed_image</key>
+        <value>Completed Image:</value>
+    </string>
+    <string>
+        <key>image_url</key>
+        <value>Image URL:</value>
+    </string>
+    <string>
+        <key>author</key>
+        <value>Author</value>
+    </string>
+    <string>
+        <key>credit</key>
+        <value>Credit:</value>
+    </string>
+    <string>
+        <key>font</key>
+        <value> font</value>
+    </string>
+    <string>
+        <key>for_developer</key>
+        <value>For Developer:</value>
+    </string>
+    <string>
+        <key>document</key>
+        <value>Document</value>
+    </string>
+    <string>
+        <key>last_update</key>
+        <value>Last Update</value>
+    </string>
+</strings>

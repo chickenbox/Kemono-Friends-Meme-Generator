@@ -1,9 +1,10 @@
 <%@page import="java.net.URLEncoder"%>
+<%@page import="com.lantanisa.common.localization.Localizer"%>
 <%@ page pageEncoding="UTF-8"%>
 <%
-final String VERSION = "1.18";
-final String TITLE = "動物好友貼圖生成器";
-final String DESCRIPTION = "快樂地分享貼圖";
+final String VERSION = "1.19";
+final String TITLE = Localizer.shared.get("site_title",request);
+final String DESCRIPTION = Localizer.shared.get("site_description",request);
 %>
 <html>
 <head>
@@ -11,7 +12,7 @@ final String DESCRIPTION = "快樂地分享貼圖";
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="title" content="<%=TITLE%>"/>
 <meta name="description" content="<%=DESCRIPTION%>"/>
-<meta name="keywords" content="けものフレンズ,Meme Generator,動物好友,動物朋友,獸娘樂園,獸娘動物園"/>
+<meta name="keywords" content="けものフレンズ,Meme Generator,動物好友,動物朋友,獸娘樂園,獸娘動物園,動物朋友標題,動物朋友Logo,產生器,製作器"/>
 <meta name="author" content="ANMC"/>
 <%
 	String thumbnailUrl = request.getParameter("thumbnail");
@@ -60,7 +61,7 @@ function onStart(){
 
 	meme_title.src = generateMeme(
 			parseInt(meme_seed.value),
-			"動物好友貼圖生成器\nv<%=VERSION%>",
+			"<%=TITLE%>\nv<%=VERSION%>",
 			64,
 			false,
 			false,
@@ -116,11 +117,11 @@ function shareMemeTW(){
 function copyToClipboard(){
 	share_url.select();
 	document.execCommand('copy');
-	alert("已把圖像連結複製到剪貼簿。");
+	alert("<%=Localizer.shared.get("copy_clipboard_prompt",request)%>");
 }
 
 </script>
-<title>動物好友貼圖生成器v<%=VERSION%></title>
+<title><%=TITLE%>v<%=VERSION%></title>
 <style>
 @font-face {
   font-family: 'cwTeXHei';
@@ -146,37 +147,37 @@ a{
 <body onload="onStart()" style="background-image: url(background.png)" alink="black" vlink="black" link="black">
 <center>
 <img id="meme_title"/><br><br><br>
-<div style="display: table-cell; text-align: left"><b>輸入文字內容(最多100字):</b><br><textarea id="content_text" type="text" onchange="updateMeme()" onblur="updateMeme()" onkeypress="updateMeme()" rows="5" style="width:320px" maxlength="100" placeholder="女の子の姿になった動物たちが繰り広げる大冒険！
+<div style="display: table-cell; text-align: left"><b><%=Localizer.shared.get("input_text_content",request)%></b><br><textarea id="content_text" type="text" onchange="updateMeme()" onblur="updateMeme()" onkeypress="updateMeme()" rows="5" style="width:320px" maxlength="100" placeholder="女の子の姿になった動物たちが繰り広げる大冒険！
 けものフレンズ
 KEMONO FRIENDS"></textarea></div>
 <div style="display:table">
-<div style="display:table-row"><div style="display:table-cell" align="right"><b>字型大小:</b></div><div style="display:table-cell" align="left"><input id="font_size" type="number" value="80" onchange="updateMeme()"/></div></div>
-<div style="display:table-row"><div style="display:table-cell" align="right"><b>隨機種子:</b></div><div style="display:table-cell" align="left"><input id="meme_seed" type="number" value="1" onchange="updateMeme()" style="width:100px"/><input type="button" value="換一個" onclick="meme_seed.value=Math.floor(Math.random()*1000);updateMeme();"/></div></div>
+<div style="display:table-row"><div style="display:table-cell" align="right"><b><%=Localizer.shared.get("font_size",request)%></b></div><div style="display:table-cell" align="left"><input id="font_size" type="number" value="80" onchange="updateMeme()"/></div></div>
+<div style="display:table-row"><div style="display:table-cell" align="right"><b><%=Localizer.shared.get("rand_seed",request)%></b></div><div style="display:table-cell" align="left"><input id="meme_seed" type="number" value="1" onchange="updateMeme()" style="width:100px"/><input type="button" value="<%=Localizer.shared.get("randomize",request)%>" onclick="meme_seed.value=Math.floor(Math.random()*1000);updateMeme();"/></div></div>
 </div>
 <div style="display:table">
-<div style="display:table-row"><div style="display:table-cell" align="right"><b>Logo樣式:</b></div><div style="display:table-cell" align="left"><input id="meme_logo_style" type="checkbox" checked onchange="updateMeme()"/></div></div>
-<div style="display:table-row"><div style="display:table-cell" align="right"><b>透明背景:</b></div><div style="display:table-cell" align="left"><input id="meme_trans_bg" type="checkbox" checked onchange="updateMeme()"/></div></div>
-<div style="display:table-row"><div style="display:table-cell" align="right"><b>隨機顏色排序:</b></div><div style="display:table-cell" align="left"><input id="meme_shuffle" type="checkbox" onchange="updateMeme()"/></div></div>
-<div style="display:table-row"><div style="display:table-cell" align="right"><b>鎖定2:1圖像:</b></div><div style="display:table-cell" align="left"><input id="meme_ratio_lock" type="checkbox" checked onchange="updateMeme()"/></div></div>
+<div style="display:table-row"><div style="display:table-cell" align="right"><b><%=Localizer.shared.get("logo_style",request)%></b></div><div style="display:table-cell" align="left"><input id="meme_logo_style" type="checkbox" checked onchange="updateMeme()"/></div></div>
+<div style="display:table-row"><div style="display:table-cell" align="right"><b><%=Localizer.shared.get("transparent_background",request)%></b></div><div style="display:table-cell" align="left"><input id="meme_trans_bg" type="checkbox" checked onchange="updateMeme()"/></div></div>
+<div style="display:table-row"><div style="display:table-cell" align="right"><b><%=Localizer.shared.get("random_color_order",request)%></b></div><div style="display:table-cell" align="left"><input id="meme_shuffle" type="checkbox" onchange="updateMeme()"/></div></div>
+<div style="display:table-row"><div style="display:table-cell" align="right"><b><%=Localizer.shared.get("lock_aspect_ratio",request)%></b></div><div style="display:table-cell" align="left"><input id="meme_ratio_lock" type="checkbox" checked onchange="updateMeme()"/></div></div>
 </div>
 <br><br>
-<b>完成圖像:</b><br>
+<b><%=Localizer.shared.get("completed_image",request)%></b><br>
 <img id="output_meme" alt="output_meme" src=""/><br><br>
-<b>圖像網址:</b> <input id="share_url" type="text" readonly/> <input type="image" onclick="copyToClipboard()" src="copy-clipboard.png" style="padding: 0px 0px;"/><br><br>
+<b><%=Localizer.shared.get("image_url",request)%></b> <input id="share_url" type="text" readonly/> <input type="image" onclick="copyToClipboard()" src="copy-clipboard.png" style="padding: 0px 0px;"/><br><br>
 <input type="image" onclick="shareMemeFB()" src="button-fb.png"/>
 <input type="image" onclick="shareMemeTW()" src="tweet-button-2015.png"/>
 <br><br><br><br><br><br>
 <div style="display: table-cell; text-align: left">
 <font color="black">
-<font size="2"><b>作者 ANMC <a href="mailto:lamylanmc@hotmail.com">lamylanmc@hotmail.com</a><br><br>
-<font size="3"><b>感謝:</b></font><br>
-<b>FriendsFu字型 作者 kyoyababa</b><br>
+<font size="2"><b><%=Localizer.shared.get("author",request)%> ANMC <a href="mailto:lamylanmc@hotmail.com">lamylanmc@hotmail.com</a><br><br>
+<font size="3"><b><%=Localizer.shared.get("credit",request)%></b></font><br>
+<b>FriendsFu<%=Localizer.shared.get("font",request)%> <%=Localizer.shared.get("author",request)%> kyoyababa</b><br>
 <a href="https://github.com/kyoyababa/font-FriendsFu">https://github.com/kyoyababa/font-FriendsFu</a><br><br>
 <div align="right">
-開發者資訊:<br>
-<a href="api-doc.jsp">REST API 文件</a><br></div>
+<%=Localizer.shared.get("for_developer",request)%><br>
+<a href="api-doc.jsp">REST API <%=Localizer.shared.get("document",request)%></a><br></div>
 </div><br>
-<h7>最後更新 09-05-2017</h7>
+<h7><%=Localizer.shared.get("last_update",request)%> 16-05-2017</h7>
 </font>
 </center>
 </body>
