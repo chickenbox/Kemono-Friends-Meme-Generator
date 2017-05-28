@@ -1,7 +1,7 @@
 {
   "short_name": "動物朋友貼圖",
   "name": "動物朋友貼圖產生器",
-  "start_url": "index.jsp",
+  "start_url": "/kfmmg",
   "display": "fullscreen",
   "orientation": "portrait",
    "icons": [
