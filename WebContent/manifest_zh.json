@@ -1,0 +1,15 @@
+{
+  "short_name": "動物朋友貼圖",
+  "name": "動物朋友貼圖產生器",
+  "start_url": "index.jsp",
+  "display": "fullscreen",
+  "orientation": "portrait",
+   "icons": [
+     {
+       "src": "img/icon_192x192.png",
+       "sizes": "192x192",
+       "type": "image/png",
+       "density": 4.0
+     }
+   ]
+}

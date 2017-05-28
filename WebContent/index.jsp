@@ -2,7 +2,7 @@
 <%@page import="com.lantanisa.common.localization.Localizer"%>
 <%@ page pageEncoding="UTF-8"%>
 <%
-final String VERSION = "1.19";
+final String VERSION = "1.20";
 final String TITLE = Localizer.shared.get("site_title",request);
 final String DESCRIPTION = Localizer.shared.get("site_description",request);
 %>
@@ -10,6 +10,24 @@ final String DESCRIPTION = Localizer.shared.get("site_description",request);
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="mobile-web-app-capable" content="yes">
+<%
+	switch(Localizer.Language.getLanguage(request)){
+	case TRADITIONAL_CHINESE:
+		%>
+<link rel="manifest" href="manifest_zh.json">
+		<%
+		break;
+	default:
+		%>
+<link rel="manifest" href="manifest_en.json">
+		<%
+		break;
+	}
+%>
+<link rel="icon" href="img/icon_32x32.png" type="image/png" />
+<link rel="icon" sizes="192x192" href="img/icon_192x192.png">
+<link rel="apple-touch-icon" sizes="128x128" href="img/icon_128x128.png">
 <meta name="title" content="<%=TITLE%>"/>
 <meta name="description" content="<%=DESCRIPTION%>"/>
 <meta name="keywords" content="けものフレンズ,Meme Generator,動物好友,動物朋友,獸娘樂園,獸娘動物園,動物朋友標題,動物朋友Logo,產生器,製作器"/>
