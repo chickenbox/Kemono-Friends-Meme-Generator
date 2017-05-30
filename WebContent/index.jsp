@@ -138,6 +138,10 @@ function copyToClipboard(){
 	alert("<%=Localizer.shared.get("copy_clipboard_prompt",request)%>");
 }
 
+try{
+	screen.orientation.lock("portrait");
+}catch(e){}
+
 </script>
 <title><%=TITLE%>v<%=VERSION%></title>
 <style>
